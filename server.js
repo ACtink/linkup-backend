@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
+import multer from "multer";
+
 import appRouter from "./routes/allroutes.js"
 import connectToDb from "./connectToDb.js"
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js"
@@ -18,10 +20,12 @@ app.use(cors({
 }));
 
 import cookieParser from "cookie-parser"
+import { connectToS3 } from "./utils/s3Service.js";
+import { getMulterObject } from "./utils/multerconfig.js";
 
 
 app.use(express.json());
-app.use(cookieParser("hahaha"));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
 app.use((req, res, next) => {
@@ -49,6 +53,9 @@ app.use((req, res, next) => {
 
 connectToDb()
 
+connectToS3()
+
+
 
 
 
@@ -75,53 +82,29 @@ app.get("/getallusers" , async(req, res, next)=>{
 
 
   
-app.get('/allrecipes', checkAuthentication, async(req, res, next)=>{
-
-    const signedCookies = req.signedCookies
-    console.log("cookies" ,signedCookies)
-
-    // console.log("cookie token recieved from client" , token)
-
-    // res.cookie("token-2", "72827282728gdgdb9y38b")
-    // res.setHeader('Set-Cookie', 'myCookie=myCookieValue; HttpOnly; Secure; SameSite=None; Max-Age=3600');
-
- 
-
-    res.json({message:"take your recipes"})
-
-    
-
-    
-
-
-})
 
 
 
-// Use cookie-parser middleware
 
 
-app.get('/readcookie', (req, res) => {
-  // Access the value of 'testCookie' from req.cookies
-  const cookieValue = req.signedCookies.testCookie2
-  console.log(req.signedCookies)
-  console.log(req.cookies)
 
-  if (cookieValue) {
-    res.send(`Cookie value: ${cookieValue}`);
-  } else {
-    res.send('Cookie not found!');
+
+
+
+
+
+
+
+app.use((error, req, res, next)=>{
+  if(error instanceof multer.MulterError){
+
+          return res.status(400).json({message:error.code})
+      
+     
   }
-});
-
-
-app.get("/auth", checkAuthentication, (req, res)=>{
-
-  console.log(req.userId)
-
-  res.json({message:"inside"})
-
-
+  else{
+    return res.status(400).json({message:error})
+  }
 
 
 })

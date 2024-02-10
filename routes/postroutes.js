@@ -6,14 +6,21 @@ import { allPosts } from "../controllers/allPosts.js"
 import { createPost } from "../controllers/createPost.js"
 import { userPosts } from "../controllers/userPosts.js"
 import { deletePost } from "../controllers/deletePost.js"
+import { getMulterObject } from "../utils/multerconfig.js"
 
 const router = express.Router()
+
+
+
+
+
+const upload =  getMulterObject()
 
 
 router.get("/",allPosts)
 router.get("/myposts", checkAuthentication ,userPosts)
 router.delete("/:id",deletePost)
-router.post("/createpost" ,checkAuthentication, createPost)
+router.post("/createpost" ,checkAuthentication,  upload.single("file"), createPost)
 
 
 

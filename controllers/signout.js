@@ -1,7 +1,7 @@
 import User from "../models/user.js"
 
 
-export const logout = async(req, res)=>{
+export const signOutUser = async(req, res)=>{
 
   console.log("request came in logout")
 
@@ -15,6 +15,6 @@ export const logout = async(req, res)=>{
 
  
 
-    res.status(200).json({message:"successfully logged out"})
+    res.status(200).json({message:"successfully Signed out"})
 
 }

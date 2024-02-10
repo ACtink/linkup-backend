@@ -1,14 +1,14 @@
 import  express from "express"
-import { registerUser } from "../controllers/register.js"
-import { loginUser } from "../controllers/login.js"
-import { logout } from "../controllers/logout.js"
+import { signUpUser } from "../controllers/signup.js"
+import {  signInUser } from "../controllers/signin.js"
+import {  signOutUser } from "../controllers/signout.js"
 import { checkAuthentication } from "../middlewares/checkAuthentication.js"
 
 const router = express.Router()
 
-router.post("/register", registerUser )
-router.post("/login", loginUser)
-router.post("/logout", logout)
+router.post("/signup", signUpUser )
+router.post("/signin", signInUser)
+router.post("/signout", signOutUser)
 
 
 

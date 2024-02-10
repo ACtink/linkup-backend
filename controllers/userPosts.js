@@ -11,6 +11,8 @@ export const userPosts = async (req, res, next) => {
     try{
     const myposts = await Post.find({ author: req.userId })
 
+   
+
     if(myposts){
       res.status(200).json(myposts)
 

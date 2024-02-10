@@ -5,7 +5,7 @@ import { isPasswordCorrect } from "../utils/isPasswordCorrect.js";
 
 
 
-export const loginUser = async (req, res, next) => {
+export const signInUser = async (req, res, next) => {
     const { email, password } = req.body;
     console.log(email , password)
 

@@ -4,7 +4,7 @@ import {commentSchema} from "./comment.js"
 import User from './user.js';
 
 const postSchema = new mongoose.Schema({
-  postbody: {
+  title: {
     type: String,
     required: true,
     
@@ -17,7 +17,10 @@ const postSchema = new mongoose.Schema({
   likes :{
     type : Number,
   },
-//   comments: [commentSchema],
+  photoUrl :{
+    type : String,
+  },
+  comments: [commentSchema],
 
   timestamp: {
     type: Date,
