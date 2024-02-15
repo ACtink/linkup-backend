@@ -13,11 +13,22 @@ import cors from "cors"
 import User from "./models/user.js"
 const app = express()
 
+const port = process.env.PORT || 5000
+
 
 app.use(cors({
   origin:"http://localhost:3000",
   credentials:true
 }));
+
+
+// app.use(cors({
+//   origin: "*",
+//   credentials:true
+// }));
+
+
+
 
 import cookieParser from "cookie-parser"
 import { connectToS3 } from "./utils/s3Service.js";
@@ -28,20 +39,20 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-    res.setHeader('access-control-expose-headers', 'true')
+//     res.setHeader('access-control-expose-headers', 'true')
  
-    if (req.method === 'OPTIONS') {
-      res.sendStatus(204); // Respond to OPTIONS with 204 No Content
-    } else {
-      next(); // Pass control to the next middleware for non-OPTIONS requests
-    }
-  });
+//     if (req.method === 'OPTIONS') {
+//       res.sendStatus(204); // Respond to OPTIONS with 204 No Content
+//     } else {
+//       next(); // Pass control to the next middleware for non-OPTIONS requests
+//     }
+//   });
   
 // app.use(cors({
 //   origin: true,
@@ -115,6 +126,6 @@ app.use(errorHandlerMiddleware)
 
 
 
-app.listen(5000, ()=>{
-    console.log("APP is listening on port 5000")
+app.listen(port, ()=>{
+    console.log(`APP is listening on port ${port}`)
 })

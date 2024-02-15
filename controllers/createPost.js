@@ -24,6 +24,7 @@ export const createPost = async (req, res) => {
       const newPostObject = {
         title: req.body.title,
         author: req.userId,
+        username:req.username,
         likes: 0,
         photoUrl: urlString,
       };

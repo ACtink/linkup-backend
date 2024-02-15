@@ -11,7 +11,7 @@
 
 
       try{
-      const allPosts = await Post.find({})
+      const allPosts = await Post.find({}).sort({ timestamp: -1 })
 
       if(allPosts){
         res.status(200).json(allPosts)

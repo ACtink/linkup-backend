@@ -7,24 +7,55 @@ import jwt from "jsonwebtoken"
 export const checkAuthentication = async (req, res, next) => {
 
   try {
-    const token = req.signedCookies.newToken;
+    const token = req.signedCookies.accessToken;
+
+
+    console.log('access Token aaya hai from browser' , token)
 
     if (!token) {
      
-      return res.status(401).json({message:"Unauthorized"});
+      return res.status(401).json({ message:"Unauthorized"});
     }
 
-    jwt.verify(token, process.env.SECRET_FOR_JWT_TOKEN, (err, decoded) => {
-      if (err) {
-        console.log("inside err")
-        return res.status(401).json({message:"Unauthorized"});
+    jwt.verify(token, process.env.SECRET_FOR_JWT_TOKEN, (error, decoded) => {
+
+      if(error){
+
+
+        console.log("error name " , error.name)
+
+  
+      if (error.name === 'TokenExpiredError') {
+        
+        
+        console.log('Token has expired');
+        console.log('Expired at:', error.expiredAt);
+        return  res.status(403).json({message:"Unauthorized token expire ho gaya hai bhai"})
+   
+        
+
+      } else {
+        return  res.status(401).json({ message:"Unauthorized"})
       }
+
+
+    }
+
+
+    console.log(" decoded object" , decoded)
+
       req.userId = decoded.id;
+      req.username = decoded.username
+      req.email = decoded.email
+
       next();
+
+
+      
     });
-  } catch (err) {
+  } catch (error) {
     console.log("inside catch err")
     // next(new AuthenticationError(err.message));
-    console.log(err)
+    console.log(error)
   }
 };

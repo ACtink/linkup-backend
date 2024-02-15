@@ -2,6 +2,7 @@
 import User from "../models/user.js"
 import { createJsonWebToken } from "../utils/createjsontoken.js"
 import { isPasswordCorrect } from "../utils/isPasswordCorrect.js";
+import { refreshToken } from "./refreshToken.js";
 
 
 
@@ -24,14 +25,22 @@ export const signInUser = async (req, res, next) => {
             throw new Error("Wrong email or password");
         }
 
-        const token = createJsonWebToken(user._id, user.email);
+       const expiryForAccessToken = "1m"
+     const expiryForRefreshToken = "7d"
 
-        res.cookie("newToken", token, { httpOnly: true, secure: false, signed: true });
+
+
+        const accessToken = await createJsonWebToken(user._id, user.email, user.username, expiryForAccessToken );
+        const refreshToken = await createJsonWebToken(user._id, user.email, user.username, expiryForRefreshToken );
+
+        res.cookie("accessToken", accessToken, { httpOnly: true, secure: false, signed: true });
+        res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: false, signed: true });
+
 
         res.json({ success: true, message: 'Login successfull' });
     } catch (err) {
         
         // next(err);
-        res.status(401).json({error:err.message})
+      return res.status(401).json({error:err.message})
     }
 };

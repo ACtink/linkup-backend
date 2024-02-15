@@ -9,7 +9,7 @@ export const userPosts = async (req, res, next) => {
     console.log(req.userId)
 
     try{
-    const myposts = await Post.find({ author: req.userId })
+    const myposts = await Post.find({ author: req.userId }).sort({ timestamp: -1 })
 
    
 

@@ -9,7 +9,9 @@ export const signOutUser = async(req, res)=>{
   
 
 
-  res.cookie('newToken', '', { expires: new Date(0) });
+  res.cookie('accessToken', '', { expires: new Date(0) });
+  res.cookie('refreshToken', '', { expires: new Date(0) });
+
 
   // Respond as needed
 

@@ -20,6 +20,9 @@ const postSchema = new mongoose.Schema({
   photoUrl :{
     type : String,
   },
+  username :{
+    type : String,
+  },
   comments: [commentSchema],
 
   timestamp: {
