@@ -33,8 +33,11 @@ export const signInUser = async (req, res, next) => {
         const accessToken = await createJsonWebToken(user._id, user.email, user.username, expiryForAccessToken );
         const refreshToken = await createJsonWebToken(user._id, user.email, user.username, expiryForRefreshToken );
 
-        res.cookie("accessToken", accessToken, { httpOnly: true, secure: true, signed: true });
-        res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, signed: true });
+        // res.cookie("accessToken", accessToken, { httpOnly: true, secure: true, signed: true });
+        // res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, signed: true });
+
+        res.cookie("accessToken", accessToken, {  signed: true });
+        res.cookie("refreshToken", refreshToken, {  signed: true });
 
 
         res.json({ success: true, message: 'Login successfull' });
