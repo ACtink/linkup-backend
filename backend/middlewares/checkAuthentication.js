@@ -10,7 +10,7 @@ export const checkAuthentication = async (req, res, next) => {
     const token = req.signedCookies.accessToken;
 
 
-    console.log('access Token aaya hai from browser' , token)
+    console.log('access Token aaya hai from browser------>' , token)
 
     if (!token) {
      
@@ -42,7 +42,7 @@ export const checkAuthentication = async (req, res, next) => {
     }
 
 
-    console.log(" decoded object" , decoded)
+    // console.log(" decoded object" , decoded)
 
       req.userId = decoded.id;
       req.username = decoded.username
