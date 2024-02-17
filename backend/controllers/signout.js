@@ -1,4 +1,3 @@
-import User from "../models/user.js"
 
 
 export const signOutUser = async(req, res)=>{

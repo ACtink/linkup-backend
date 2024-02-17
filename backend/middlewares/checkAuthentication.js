@@ -1,6 +1,5 @@
 
-import { AuthenticationError } from "../services/AuthenticationError.js";
-import User from "../models/user.js";
+
 import jwt from "jsonwebtoken"
 
 
@@ -8,6 +7,10 @@ export const checkAuthentication = async (req, res, next) => {
 
   try {
     const token = req.signedCookies.accessToken;
+
+    const token2forchecking = req.cookies.accessToken
+
+    console.log("token2forchecking---------------->" , token2forchecking)
 
 
     console.log('access Token aaya hai from browser------>' , token)
