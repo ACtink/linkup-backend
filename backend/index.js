@@ -8,7 +8,6 @@ import multer from "multer";
 import appRouter from "./routes/allroutes.js"
 import connectToDb from "./connectToDb.js"
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js"
-import { checkAuthentication } from "./middlewares/checkAuthentication.js"
 import cors from "cors"
 import User from "./models/user.js"
 const app = express()
@@ -73,7 +72,11 @@ app.use("/api",appRouter)
 
 
 
+app.get("/" , async(req, res, next)=>{
 
+   res.send("Welcome to backend API")
+
+})
 
 
 
