@@ -18,26 +18,26 @@ const port = process.env.PORT || 5000
 console.log("mode" ,process.env.MODE)
 
 
-if(process.env.MODE == 'development'){
+// if(process.env.MODE == 'development'){
+
+//   app.use(cors({
+//     origin:"http://localhost:3000",
+//     credentials:true
+//   }));
+  
+
+// }
+
+
+
 
   app.use(cors({
-    origin:"http://localhost:3000",
+    origin: process.env.MODE =='production' ? "https://linkup-frontend-service.onrender.com" : "http://localhost:3000",
     credentials:true
   }));
   
 
-}
 
-
-if(process.env.MODE == 'production'){
-
-  app.use(cors({
-    origin: "https://linkup-frontend-service.onrender.com",
-    credentials:true
-  }));
-  
-
-}
 
 
 

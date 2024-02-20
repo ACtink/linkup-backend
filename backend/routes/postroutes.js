@@ -10,6 +10,7 @@ import { getMulterObject } from "../utils/multerconfig.js"
 import { createComment } from "../controllers/createComment.js"
 import { deleteLike } from "../controllers/deleteLike.js"
 import { createLike } from "../controllers/createLike.js"
+import { getLikesCount } from "../controllers/getLikesCount.js"
 
 const router = express.Router()
 
@@ -21,6 +22,9 @@ const upload =  getMulterObject()
 
 
 router.get("/",allPosts)
+
+router.get("/:postId/likesCount", getLikesCount)
+
 router.get("/myposts", checkAuthentication ,userPosts)
 router.delete("/:id",deletePost)
 router.post("/createpost" ,checkAuthentication,  upload.single("file"), createPost)
