@@ -15,16 +15,32 @@ const app = express()
 const port = process.env.PORT || 5000
 
 
-// app.use(cors({
-//   origin:"http://localhost:3000",
-//   credentials:true
-// }));
+console.log("mode" ,process.env.MODE)
 
 
-app.use(cors({
-  origin: "https://linkup-frontend-service.onrender.com",
-  credentials:true
-}));
+if(process.env.MODE == 'development'){
+
+  app.use(cors({
+    origin:"http://localhost:3000",
+    credentials:true
+  }));
+  
+
+}
+
+
+if(process.env.MODE == 'production'){
+
+  app.use(cors({
+    origin: "https://linkup-frontend-service.onrender.com",
+    credentials:true
+  }));
+  
+
+}
+
+
+
 
 
 

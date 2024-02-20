@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import {commentSchema} from "./comment.js"
 // const User = require('./user')
 import User from './user.js';
+import { likeSchema } from "./like.js";
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -17,6 +18,10 @@ const postSchema = new mongoose.Schema({
   likes :{
     type : Number,
   },
+
+  commentCount :{
+    type : Number,
+  },
   photoUrl :{
     type : String,
   },
@@ -24,6 +29,9 @@ const postSchema = new mongoose.Schema({
     type : String,
   },
   comments: [commentSchema],
+
+  likesArray: [likeSchema],
+
 
   timestamp: {
     type: Date,
