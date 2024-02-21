@@ -28,7 +28,7 @@ console.log("mode" ,process.env.MODE)
 
 // }
 
-
+console.log("this is environment console.log" ,process.env.NODE_ENV)
 
 
   app.use(cors({
