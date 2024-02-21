@@ -31,10 +31,14 @@ console.log("mode" ,process.env.MODE)
 console.log("this is environment console.log" ,process.env.NODE_ENV)
 
 
+
+
+
   app.use(cors({
-    origin: process.env.MODE =='production' ? "https://linkup-frontend-service.onrender.com" : "http://localhost:3000",
+    origin:process.env.NODE_ENV =='production' ? "https://linkup-frontend-service.onrender.com" : "http://localhost:3000",
     credentials:true
   }));
+
   
 
 
