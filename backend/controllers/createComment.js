@@ -1,6 +1,7 @@
 
 import Comment from "../models/comment.js";
 import Post from "../models/post.js";
+import User from "../models/user.js";
 
 
 export const createComment = async (req, res) => {
@@ -14,15 +15,18 @@ export const createComment = async (req, res) => {
 
   const post = await Post.findById(postId);
 
+  const user = await User.findById(req.userId)
+
      
 
 
-  if(post){
+  if(post && user){
 
 
     const newCommentObject = {
         content: commentContent,
         author: req.userId,
+        username:user.username
       };
 
     const newComment = await Comment.create(newCommentObject);

@@ -12,7 +12,6 @@ import Post from "../models/post.js";
 
 
 export const deleteLike = async (req, res) => {
-  console.log("request came for delete a Like");
 
   const postId = req.params.postId;
 
@@ -50,7 +49,6 @@ if(like){
 
 
 
-    console.log(updatedPost)
 
     return  res.status(200).json({ message: "like deleted successfully" });
 

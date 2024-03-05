@@ -1,5 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
+import http from "http"
+import {Server} from "socket.io"
 
 dotenv.config()
 
@@ -15,23 +17,37 @@ const app = express()
 const port = process.env.PORT || 5000
 
 
+
+
+
+const server = http.createServer(app);
+export const io = new Server(server, {
+  cors: {
+    origin: "*", // Adjust this according to your CORS policy
+  },
+});
+
+
+
+
+
+
+// const server = http.createServer(app);
+// const io = new Server(server);
+// const socket = io.on("connection", (socket) => {
+//   console.log("this is a socket ##############" , socket)
+
+// });
+
+
+
+
+
+
 console.log("mode" ,process.env.MODE)
 
 
-// if(process.env.MODE == 'development'){
-
-//   app.use(cors({
-//     origin:"http://localhost:3000",
-//     credentials:true
-//   }));
-  
-
-// }
-
 console.log("this is environment console.log" ,process.env.NODE_ENV)
-
-
-
 
 
   app.use(cors({
@@ -72,10 +88,7 @@ app.use((req, res, next) => {
     }
   });
   
-// app.use(cors({
-//   origin: true,
-//   credentials: true,
-// }));
+
 
 
 
@@ -148,6 +161,6 @@ app.use(errorHandlerMiddleware)
 
 
 
-app.listen(port, ()=>{
+server.listen(port, ()=>{
     console.log(`APP is listening on port ${port}`)
 })

@@ -14,12 +14,14 @@
 
 import Post from "../models/post.js";
 
+import { connectToWebSocketClients } from "../utils/webSocketConnection.js";
 
 export const getLikesCount = async (req, res) => {
-  console.log("request came for likes Count");
+  // console.log("request came for likes Count");
 
   const postId = req.params.postId;
 
+// connectToWebSocketClients()
 //   const likeValue = req.body.liked;
 
     try {

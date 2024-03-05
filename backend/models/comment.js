@@ -13,6 +13,10 @@ export const commentSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    username:{
+      type:String,
+      
+    },
     timestamp: {
       type: Date,
       default: Date.now,

@@ -4,10 +4,11 @@
 
 import Like from "../models/like.js";
 import Post from "../models/post.js";
+import { connectToWebSocketClients } from "../utils/webSocketConnection.js";
 
 
 export const createLike = async (req, res) => {
-  console.log("request came for new Like");
+  // console.log("request came for new Like");
 
   const postId = req.params.postId;
 
@@ -46,12 +47,14 @@ export const createLike = async (req, res) => {
           );
       
 
-          console.log(updatedPost)
+          // console.log(updatedPost)
 
           // updatedPost now contains the updated document with the author ID added to likesArray
         }
       }
 
+
+      connectToWebSocketClients()
 
 
 

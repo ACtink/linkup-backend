@@ -42,6 +42,6 @@ export const signInUser = async (req, res, next) => {
     } catch (err) {
         
         // next(err);
-      return res.status(401).json({error:err.message})
+      return res.status(401).json({message:err.message})
     }
 };
