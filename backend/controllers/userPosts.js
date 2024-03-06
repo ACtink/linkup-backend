@@ -1,20 +1,40 @@
 
 import Post from "../models/post.js"
+import User from "../models/user.js";
 
 
 export const userPosts = async (req, res, next) => {
 
+  const username = req.params.username;
+
     console.log("inside allposts")
 
-    console.log(req.userId)
+    console.log(username)
+
 
     try{
-    const myposts = await Post.find({ author: req.userId }).sort({ timestamp: -1 })
+
+
+        const user = await User.findOne({ username });
+
+        console.log("this is found user", user);
+
+        if (!user) {
+          return res
+            .status(404)
+            .json({ message: "No user exists with this username" });
+        }
+
+
+
+          
+
+    const posts = await Post.find({ username: username }).sort({ timestamp: -1 })
 
    
 
-    if(myposts){
-      res.status(200).json(myposts)
+    if(posts){
+      res.status(200).json(posts)
 
     }
     else{

@@ -1,0 +1,44 @@
+import express from "express";
+
+import { checkAuthentication } from "../middlewares/checkAuthentication.js";
+import { allPosts } from "../controllers/allPosts.js";
+import { createPost } from "../controllers/createPost.js";
+import { userPosts } from "../controllers/userPosts.js";
+import { deletePost } from "../controllers/deletePost.js";
+import { getMulterObject } from "../utils/multerconfig.js";
+import { createComment } from "../controllers/createComment.js";
+import { deleteLike } from "../controllers/deleteLike.js";
+import { createLike } from "../controllers/createLike.js";
+import { getLikesCount } from "../controllers/getLikesCount.js";
+import { getUserProfile } from "../controllers/getUserProfile.js";
+import { editUserProfile } from "../controllers/editUserProfile.js";
+
+const router = express.Router();
+
+const upload = getMulterObject();
+
+
+// const upload = getMulterObject();
+
+router.get("/:username", getUserProfile);
+router.post("/:username/editprofile",  upload.single("file"), editUserProfile);
+
+
+// router.get("/:postId/likesCount", getLikesCount);
+
+// router.get("/myposts", checkAuthentication, userPosts);
+// router.delete("/:id", deletePost);
+// router.post(
+//   "/createpost",
+//   checkAuthentication,
+//   upload.single("file"),
+//   createPost
+// );
+
+// router.post("/:postId/comment", checkAuthentication, createComment);
+
+// router.post("/:postId/like", checkAuthentication, createLike);
+
+// router.delete("/:postId/like", checkAuthentication, deleteLike);
+
+export default router;

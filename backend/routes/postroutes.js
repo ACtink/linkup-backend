@@ -25,7 +25,7 @@ router.get("/",allPosts)
 
 router.get("/:postId/likesCount", getLikesCount)
 
-router.get("/myposts", checkAuthentication ,userPosts)
+router.get("/:username", checkAuthentication ,userPosts)
 router.delete("/:id",deletePost)
 router.post("/createpost" ,checkAuthentication,  upload.single("file"), createPost)
 
