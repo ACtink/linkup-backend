@@ -32,6 +32,8 @@ const postSchema = new mongoose.Schema({
 
   likesArray: [likeSchema],
 
+  
+
 
   timestamp: {
     type: Date,

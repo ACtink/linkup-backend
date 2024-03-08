@@ -4,7 +4,6 @@
 
 import Like from "../models/like.js";
 import Post from "../models/post.js";
-import { connectToWebSocketClients } from "../utils/webSocketConnection.js";
 
 
 export const createLike = async (req, res) => {
@@ -54,7 +53,6 @@ export const createLike = async (req, res) => {
       }
 
 
-      connectToWebSocketClients()
 
 
 

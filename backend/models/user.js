@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique:true
+    unique: true,
   },
   email: {
     type: String,
@@ -15,9 +15,29 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  profilePic:{
-    type:String,
-  }
+  profilePic: {
+    type: String,
+  },
+  followersCount: {
+    type: Number,
+  },
+  followingCount: {
+    type: Number,
+  },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Reference to the User model
+      required: true,
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Reference to the User model
+      required: true,
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);

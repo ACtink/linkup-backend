@@ -2,8 +2,7 @@
  import Post from "../models/post.js";   
     
     
-    
-    
+  
     
     
     export const allPosts = async (req, res, next) => {
@@ -21,6 +20,7 @@
          .skip(skip)
          .limit(limit)
          .sort({ timestamp: -1 })
+         .populate("author", "-password -email")
          .exec();
 
       if(posts){

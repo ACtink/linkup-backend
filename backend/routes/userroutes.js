@@ -12,6 +12,8 @@ import { createLike } from "../controllers/createLike.js";
 import { getLikesCount } from "../controllers/getLikesCount.js";
 import { getUserProfile } from "../controllers/getUserProfile.js";
 import { editUserProfile } from "../controllers/editUserProfile.js";
+import { setFollow } from "../controllers/setFolllow.js";
+import { setUnFollow } from "../controllers/setUnFollow.js";
 
 const router = express.Router();
 
@@ -21,7 +23,10 @@ const upload = getMulterObject();
 // const upload = getMulterObject();
 
 router.get("/:username", getUserProfile);
-router.post("/:username/editprofile",  upload.single("file"), editUserProfile);
+router.post("/:username/editprofile", checkAuthentication,  upload.single("file"), editUserProfile);
+router.post("/:username/follow" , checkAuthentication,  setFollow)
+router.post("/:username/unfollow", checkAuthentication, setUnFollow);
+
 
 
 // router.get("/:postId/likesCount", getLikesCount);

@@ -13,9 +13,19 @@ export const getUserProfile = async (req, res) => {
 
   try {
     // const user = await User.findOne({ username });
-    const user = await User.findOne({
-      username: { $regex: new RegExp(`^${username}$`, "i") },
-    });
+   const user = await User.findOne({
+     username: { $regex: new RegExp(`^${username}$`, "i") },
+   })
+     .select("-password")
+     .populate(
+       "following",
+       "-password -email -following -followers -followersCount -followingCount  -__v  -_id"
+     )
+     .populate(
+       "followers",
+       "-password -email -following -followers -followersCount -followingCount  -__v  -_id"
+     );
+
 
 
     if (!user) {
