@@ -15,7 +15,7 @@ export const userPosts = async (req, res, next) => {
     try{
 
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username })
 
         console.log("this is found user", user);
 
@@ -29,7 +29,18 @@ export const userPosts = async (req, res, next) => {
 
           
 
-    const posts = await Post.find({ username: username }).sort({ timestamp: -1 })
+    // const posts = await Post.find({ username: username }).sort({ timestamp: -1 })
+const posts = await Post.find({ username: username })
+  .sort({ timestamp: -1 })
+  .populate({
+    path: "comments",
+    populate: {
+      path: "author",
+      model: "User",
+      select: "-password -email -followers -following -followersCount -followingCount", // Assuming your user model is named 'User'
+    },
+  })
+
 
    
 

@@ -16,12 +16,29 @@
       try{
       // const allPosts = await Post.find({}).limit(10).sort({ timestamp: -1 })
 
-       const posts = await Post.find()
-         .skip(skip)
-         .limit(limit)
-         .sort({ timestamp: -1 })
-         .populate("author", "-password -email")
-         .exec();
+      //  const posts = await Post.find()
+      //    .skip(skip)
+      //    .limit(limit)
+      //    .sort({ timestamp: -1 })
+      //    .populate("author", "-password -email")
+      //    .exec();
+
+
+  const posts = await Post.find({})
+    .sort({ timestamp: -1 })
+    .skip(skip)
+    .limit(limit)
+    .populate("author", "-password -email")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "author",
+        model: "User",
+        select:
+          "-password -email -followers -following -followersCount -followingCount",
+      },
+    });
+
 
       if(posts){
         res.status(200).json(posts)

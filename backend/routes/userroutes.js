@@ -14,6 +14,7 @@ import { getUserProfile } from "../controllers/getUserProfile.js";
 import { editUserProfile } from "../controllers/editUserProfile.js";
 import { setFollow } from "../controllers/setFolllow.js";
 import { setUnFollow } from "../controllers/setUnFollow.js";
+import { getUsersToFollow } from "../controllers/getUsersToFollow.js";
 
 const router = express.Router();
 
@@ -21,11 +22,12 @@ const upload = getMulterObject();
 
 
 // const upload = getMulterObject();
-
+router.get("/user-to-follow", getUsersToFollow);
 router.get("/:username", getUserProfile);
 router.post("/:username/editprofile", checkAuthentication,  upload.single("file"), editUserProfile);
 router.post("/:username/follow" , checkAuthentication,  setFollow)
 router.post("/:username/unfollow", checkAuthentication, setUnFollow);
+
 
 
 
