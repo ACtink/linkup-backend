@@ -37,7 +37,15 @@
         select:
           "-password -email -followers -following -followersCount -followingCount",
       },
-    });
+    }).populate({
+      path: "likesArray",
+      populate: {
+        path: "author",
+        model: "User",
+        select:
+          "-password -email -followers -following -followersCount -followingCount",
+      },
+    })
 
 
       if(posts){

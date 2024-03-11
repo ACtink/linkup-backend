@@ -20,10 +20,11 @@ export const deletePost = async (req, res) => {
           
         }
         else{
+
+
             res.status(200).json({success:"post deleted successfully"})
         }
       
-        return deletedPost;
       } catch (error) {
         console.error('Error deleting post:', error.message);
         res.status(500).json({error:"error while deleting post"})

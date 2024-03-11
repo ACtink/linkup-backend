@@ -16,6 +16,9 @@ export const deleteLike = async (req, res) => {
   const postId = req.params.postId;
 
 //   const likeValue = req.body.liked;
+   let likesCount;
+
+
 
     try {
 
@@ -47,10 +50,16 @@ if(like){
         
       );
 
+                    likesCount = updatedPost.likes;
 
 
 
-    return  res.status(200).json({ message: "like deleted successfully" });
+    return res
+      .status(200)
+      .json({
+        message: "like deleted successfully",
+        likesCount: updatedPost.likes,
+      });
 
 
   }

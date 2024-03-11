@@ -11,6 +11,8 @@ export const createLike = async (req, res) => {
 
   const postId = req.params.postId;
 
+  let likesCount
+
 //   const likeValue = req.body.liked;
 
     try {
@@ -46,6 +48,8 @@ export const createLike = async (req, res) => {
           );
       
 
+          likesCount = updatedPost.likes
+
           // console.log(updatedPost)
 
           // updatedPost now contains the updated document with the author ID added to likesArray
@@ -56,7 +60,10 @@ export const createLike = async (req, res) => {
 
 
 
-    return  res.status(200).json({ message: "like created successfully" });
+
+
+
+    return  res.status(200).json({ message: "like created successfully", likesCount:likesCount });
 
 
 

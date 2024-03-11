@@ -12,6 +12,8 @@ import { deleteLike } from "../controllers/deleteLike.js"
 import { createLike } from "../controllers/createLike.js"
 import { getLikesCount } from "../controllers/getLikesCount.js"
 import { getPostsToCheckOut } from "../controllers/getPostsToCheckOut.js"
+import { getLikesOfThePost } from "../controllers/getLikesOfThePost.js"
+import { getCommentsOfThePost } from "../controllers/getCommentsOfThePost.js"
 
 const router = express.Router()
 
@@ -23,6 +25,11 @@ const upload =  getMulterObject()
 
 
 router.get("/posts-to-check-out", getPostsToCheckOut);
+
+router.get("/:postId/likes-list", getLikesOfThePost);
+
+router.get("/:postId/comments-list", getCommentsOfThePost);
+
 
 router.get("/",allPosts)
 
@@ -37,6 +44,7 @@ router.post("/:postId/comment" ,checkAuthentication, createComment)
 router.post("/:postId/like" ,checkAuthentication, createLike)
 
 router.delete("/:postId/like" ,checkAuthentication, deleteLike)
+
 
 
 

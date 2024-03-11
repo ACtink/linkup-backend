@@ -14,7 +14,6 @@
 
 import Post from "../models/post.js";
 
-import { connectToWebSocketClients } from "../utils/webSocketConnection.js";
 
 export const getLikesCount = async (req, res) => {
   // console.log("request came for likes Count");
