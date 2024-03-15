@@ -31,7 +31,7 @@ router.get("/:postId/likes-list", getLikesOfThePost);
 router.get("/:postId/comments-list", getCommentsOfThePost);
 
 
-router.get("/",allPosts)
+router.get("/", checkAuthentication ,allPosts);
 
 router.get("/:postId/likesCount", getLikesCount)
 
