@@ -54,7 +54,12 @@ export const refreshToken = async(req, res) => {
   console.log("accesstoken after refresh" , accessToken)
 
   
-  res.cookie("accessToken", accessToken, { httpOnly: true, signed: true });
+  res.cookie("accessToken", accessToken, {
+    httpOnly: true,
+    secure: true,
+    Domain: "onrender.com",
+    signed: true,
+  });
 
 
   res.status(200).json({ message: "hello i have updated the accessToken" });
