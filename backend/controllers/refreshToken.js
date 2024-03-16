@@ -68,6 +68,7 @@ export const refreshToken = async(req, res) => {
      secure: process.env.NODE_ENV == "production" ? true : false,
      sameSite: "None",
      signed: true,
+     domain:'.onrender.com'
    });
 
 

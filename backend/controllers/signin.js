@@ -36,15 +36,17 @@ export const signInUser = async (req, res, next) => {
       
         res.cookie("accessToken", accessToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV =='production'? true :false,
+          secure: process.env.NODE_ENV == "production" ? true : false,
           sameSite: "None",
           signed: true,
+          domain: ".onrender.com",
         });
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV == "production" ? true : false,
           sameSite: "None",
           signed: true,
+          domain: ".onrender.com",
         });
 
 
