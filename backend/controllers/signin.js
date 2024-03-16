@@ -33,23 +33,19 @@ export const signInUser = async (req, res, next) => {
         const accessToken = await createJsonWebToken(user._id, user.email,  user.username, expiryForAccessToken );
         const refreshToken = await createJsonWebToken(user._id, user.email, user.username, expiryForRefreshToken );
 
+      
         res.cookie("accessToken", accessToken, {
-          // httpOnly: true,
+          httpOnly: true,
           secure: true,
-
-          // Domain: "onrender.com",
-          SameSite: "None",
+          sameSite: "None",
           signed: true,
         });
         res.cookie("refreshToken", refreshToken, {
-          // httpOnly: true,
+          httpOnly: true,
           secure: true,
-
-          // Domain: "onrender.com",
-          SameSite: "None",
+          sameSite: "None",
           signed: true,
         });
-
 
 
         res.json({ success: true, message: 'Login successfull', userName:user.username , userId:user._id });
