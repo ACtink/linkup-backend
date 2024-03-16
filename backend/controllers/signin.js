@@ -37,14 +37,14 @@ export const signInUser = async (req, res, next) => {
           httpOnly: true,
       
           // Domain: "onrender.com",
-          // SameSite: "None",
+          SameSite: "None",
           signed: true,
         });
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
 
           // Domain: "onrender.com",
-          // SameSite: "None",
+          SameSite: "None",
           signed: true,
         });
 
