@@ -34,14 +34,14 @@ export const signInUser = async (req, res, next) => {
         const refreshToken = await createJsonWebToken(user._id, user.email, user.username, expiryForRefreshToken );
 
         res.cookie("accessToken", accessToken, {
-          httpOnly: true,
+          // httpOnly: true,
       
           // Domain: "onrender.com",
           SameSite: "None",
           signed: true,
         });
         res.cookie("refreshToken", refreshToken, {
-          httpOnly: true,
+          // httpOnly: true,
 
           // Domain: "onrender.com",
           SameSite: "None",

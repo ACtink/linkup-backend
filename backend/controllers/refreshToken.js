@@ -55,7 +55,7 @@ export const refreshToken = async(req, res) => {
 
   
   res.cookie("accessToken", accessToken, {
-    httpOnly: true,
+    // httpOnly: true,
 
     // Domain: "onrender.com",
     signed: true,
