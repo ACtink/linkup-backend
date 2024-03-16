@@ -36,13 +36,13 @@ export const signInUser = async (req, res, next) => {
       
         res.cookie("accessToken", accessToken, {
           httpOnly: true,
-          secure: true,
+          secure: process.env.NODE_ENV =='production'? true :false,
           sameSite: "None",
           signed: true,
         });
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
-          secure: true,
+          secure: process.env.NODE_ENV == "production" ? true : false,
           sameSite: "None",
           signed: true,
         });
