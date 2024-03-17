@@ -45,10 +45,17 @@ export const editUserProfile = async (req, res) => {
 
            console.log(urlString)
 
-      const updatedUser = await User.updateOne(
-      { username: username }, // Filter to match the user document by username
-      { $set: updates } // Update operations to apply
+    //   const updatedUser = await User.updateOne(
+    //   { username: username }, // Filter to match the user document by username
+    //   { $set: updates } // Update operations to apply
+    // );
+
+    const updatedUser = await User.findOneAndUpdate(
+      { username: username },
+      { $set: updates },
+      { new: true } // Return the updated document
     );
+
 
       console.log("updated user " , updatedUser)
 

@@ -68,7 +68,7 @@ export const refreshToken = async(req, res) => {
      secure: process.env.NODE_ENV == "production" ? true : true,
      sameSite: "None",
      signed: true,
-     domain: ".weblinkup.online",
+     domain: process.env.NODE_ENV == "production" ? ".weblinkup.online": ""
    });
 
 
