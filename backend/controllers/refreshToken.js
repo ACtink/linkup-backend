@@ -65,10 +65,10 @@ export const refreshToken = async(req, res) => {
 
    res.cookie("accessToken", accessToken, {
      httpOnly: true,
-     secure: process.env.NODE_ENV == "production" ? true : false,
+     secure: process.env.NODE_ENV == "production" ? true : true,
      sameSite: "None",
      signed: true,
-     domain:'.onrender.com'
+     domain: ".weblinkup.online",
    });
 
 
