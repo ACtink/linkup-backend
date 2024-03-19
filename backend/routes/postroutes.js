@@ -14,6 +14,7 @@ import { getLikesCount } from "../controllers/getLikesCount.js"
 import { getPostsToCheckOut } from "../controllers/getPostsToCheckOut.js"
 import { getLikesOfThePost } from "../controllers/getLikesOfThePost.js"
 import { getCommentsOfThePost } from "../controllers/getCommentsOfThePost.js"
+import { getPost } from "../controllers/getPost.js"
 
 const router = express.Router()
 
@@ -25,6 +26,8 @@ const upload =  getMulterObject()
 
 
 router.get("/posts-to-check-out", getPostsToCheckOut);
+router.get("/id/:postId", getPost);
+
 
 router.get("/:postId/likes-list", getLikesOfThePost);
 
@@ -37,6 +40,8 @@ router.get("/:postId/likesCount", getLikesCount)
 
 router.get("/:username", checkAuthentication ,userPosts)
 router.delete("/:id",deletePost)
+
+
 router.post("/createpost" ,checkAuthentication,  upload.single("file"), createPost)
 
 router.post("/:postId/comment" ,checkAuthentication, createComment)
