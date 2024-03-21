@@ -26,7 +26,7 @@ const upload =  getMulterObject()
 
 
 router.get("/posts-to-check-out", getPostsToCheckOut);
-router.get("/id/:postId", getPost);
+router.get("/id/:postId", checkAuthentication , getPost);
 
 
 router.get("/:postId/likes-list", getLikesOfThePost);
@@ -39,7 +39,7 @@ router.get("/", checkAuthentication ,allPosts);
 router.get("/:postId/likesCount", getLikesCount)
 
 router.get("/:username", checkAuthentication ,userPosts)
-router.delete("/:id",deletePost)
+router.delete("/:id", checkAuthentication, deletePost);
 
 
 router.post("/createpost" ,checkAuthentication,  upload.single("file"), createPost)

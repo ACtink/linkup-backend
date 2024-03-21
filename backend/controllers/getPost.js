@@ -14,7 +14,13 @@ export const getPost = async (req, res) => {
         select:
           "-password -email -followers -following -followersCount -followingCount",
       },
-    });
+    }).populate({
+        path: "author",
+        model: "User",
+        select:
+          "-password -email -followers -following -followersCount -followingCount",
+      },
+    );
     if (!foundPost) {
       res.status(204).json({ error: "Post not found" });
     } else {
