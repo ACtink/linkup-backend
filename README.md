@@ -21,4 +21,4 @@ The backend for WebLinkUp is built with Node.js and Express. It provides the API
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/ACtink/weblinkup.git
+   git clone https://github.com/ACtink/linkup-backend.git
